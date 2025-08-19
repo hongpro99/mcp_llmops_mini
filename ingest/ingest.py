@@ -28,8 +28,8 @@ def load_docs(docs_dir: str):
     documents = []
 
     # txt / md
-    txt_loader = DirectoryLoader(str(docs_path), glob="**/*.txt", loader_cls=TextLoader, show_progress=True)
-    md_loader  = DirectoryLoader(str(docs_path),  glob="**/*.md",  loader_cls=TextLoader, show_progress=True)
+    txt_loader = DirectoryLoader(str(docs_path), glob="**/*.txt", loader_cls=TextLoader, loader_kwargs={"encoding": "utf-8", "autodetect_encoding": False}, show_progress=True)
+    md_loader  = DirectoryLoader(str(docs_path),  glob="**/*.md",  loader_cls=TextLoader, loader_kwargs={"encoding": "utf-8", "autodetect_encoding": False}, show_progress=True)
     documents.extend(txt_loader.load())
     documents.extend(md_loader.load())
 
@@ -66,7 +66,7 @@ def build_faiss_index(chunks) -> None:
     t0 = time.perf_counter()
 
     # OpenAI 임베딩 (환경변수에 OPENAI_API_KEY 필요)
-    emb = OpenAIEmbeddings(model=settings.EMBED_MODEL)
+    emb = OpenAIEmbeddings(model=settings.EMBED_MODEL, api_key= settings.OPENAI_API_KEY)
 
     vs = FAISS.from_documents(chunks, emb)
     Path(settings.FAISS_INDEX_PATH).mkdir(parents=True, exist_ok=True)

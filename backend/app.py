@@ -5,11 +5,16 @@ from .db import SessionLocal, engine, get_db
 from .models import Base, ChatLog
 from .schemas import ChatRequest, ChatResponse
 from .rag_chain import rag
+from .settings import settings
+import os
+
 
 
 print(">>> [app] 모듈 임포트 시작")
 
 app = FastAPI(title= "Mini RAG Chat")
+
+os.environ.setdefault("OPENAI_API_KEY", settings.OPENAI_API_KEY)  # ← 환경변수로 주입
 
 @app.on_event("startup")
 def on_startup():
