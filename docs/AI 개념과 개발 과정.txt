@@ -1,0 +1,60 @@
+langchain 서비스에서 활용된 것
+
+langchain
+LLM
+google vision API
+Tavily search
+EC2
+ECR
+
+1.Langchain이란?
+대규모 언어 모델(LLM)**을 활용한 응용 프로그램 개발을 쉽게 만들어 주는 Python 및 JavaScript 기반 프레임워크
+
+LangChain의 핵심 원리는 '프롬프트 엔지니어링'과 '체인의 구성'
+
+질문 분석 -> 관련 문서 검색 or 외부 tool 묶어서 사용 -> 답변 실행
+
+여러 tool을 묶어서 AI가 판단해서 필요한 tool을 사용하도록 할 수 있다
+
+필요에 따라 특정 모듈만 교체하거나 수정 가능함.
+
+가장 큰 장점 ! 다양한 데이터 소스 통합
+
+2.LLM 작동원리
+텍스트를 이해하고 생성하는 능력을 갖추고 있어 자연어 처리(NLP) 작업에 광범위하게 사용
+LLM은 딥러닝의 한 종류인 '트랜스포머(Transformer)' 아키텍처를 기반으로 작동
+트랜스포머: 입력된 텍스트의 각 단어 간의 관계(문맥)를 학습하여 더 정교한 결과를 생성합니다.
+
+3.,Google Vision AI란?
+Google Vision AI는 Google Cloud에서 제공하는 이미지 및 동영상 분석 서비스
+
+작동 원리
+머신러닝 모델 사용 -> 특징 추출 (Feature Extraction) -> 분류 및 태깅(라벨링) > API 호출
+
+Google Vision AI는 사전 학습된 딥러닝 모델(주로 CNN, 트랜스포머 기반)을 사용하여 이미지를 분석합니다.
+
+4.Tavily search 란?
+대규모 언어 모델(LLM)과 AI 에이전트를 위해 최적화된 검색 엔진, 실시간으로 정확하고 신뢰할 수 있는 정보를 제공
+신뢰할 수 있는 권위 있는 출처에서 정보를 수집합니다.
+
+5.EC2란? 
+Amazon Web Services(AWS)**에서 제공하는 가상 서버 서비스
+AWS의 가상화 기술로 여러 개의 가상 서버를 생성하고 물리적 하드웨어 자원을 공유하면서 독립적으로 작동
+
+6.ECR이란?
+Docker와 같은 툴로 애플리케이션을 컨테이너 이미지로 빌드 ->  로컬에서 빌드한 이미지를 ECR에 업로드.-> 업로드된 이미지는 ECR에서 안전하게 저장되며, 태그를 통해 관리됩니다. -> ECR에서 이미지를 가져와 배포 
+
+7.Flask, FastAPI
+Python으로 작성된 웹 프레임워크
+
+fastAPI 좋은점
+자동 문서화: OpenAPI(Swagger)와 ReDoc으로 API 문서를 자동 생성.
+비동기 지원: async/await를 사용하여 비동기 API 설계에 적합.
+
+개발과정
+개발 환경 설정(라이브러리 설치, API 인증(key)) -> 서비스 개발 -> 컨테이너화 및 이미지 배포 -> AWS EC2에서 애플리케이션 배포 - > 서비스 테스트 및 배포(postman, swagger) -> 운영 및 유지보수(cloudwatch)
+
+
+
+
+

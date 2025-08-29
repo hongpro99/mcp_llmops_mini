@@ -46,7 +46,7 @@ def rag(question: str, k: int = 4) -> tuple[str, List[str]]:
     docs, sources = retriever(question, k=k)
     system_message = (
         "Answer the user's question using only the provided information below. "
-        "If the answer is not contained, say you are not sure.\n\n"
+        "만약 내용이 포함되어 있지 않으면, 너가 알고 있는 부분에 대해서 대답해줘.\n\n"
         + "\n\n".join(f"[{i+1}] {t}" for i, t in enumerate(docs))
     )
 
@@ -59,7 +59,7 @@ def rag(question: str, k: int = 4) -> tuple[str, List[str]]:
             {"role": "user", "content": question},
         ],
         model=settings.CHAT_MODEL,  # 예: gpt-4o-mini
-        temperature=0.2,
+        #temperature=0.2,
     )
     print(">>> [rag_chain] OpenAI call done")
 
