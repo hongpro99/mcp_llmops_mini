@@ -43,7 +43,10 @@
           ├── LangChain (프롬프트 구성)
           └── OpenAI API (응답 생성)
 
-### 참고자료
+---
+
+## 참고 자료
+
 ### 🔹 LLM & RAG 
 - [OpenAI RAG 소개](https://platform.openai.com/docs/guides/retrieval)  
 - [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction)  
