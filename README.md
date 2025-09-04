@@ -42,3 +42,14 @@
           ├── FAISS Vector Store (문서 검색)
           ├── LangChain (프롬프트 구성)
           └── OpenAI API (응답 생성)
+
+### 참고자료
+### 🔹 LLM & RAG 
+- [OpenAI RAG 소개](https://platform.openai.com/docs/guides/retrieval)  
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction)  
+- [FAISS: Facebook AI Similarity Search](https://github.com/facebookresearch/faiss)  
+- [Pinecone: Vector Database](https://docs.pinecone.io/)  
+
+### 🔹 LLMOps & 모니터링
+- [LangSmith (LangChain Observability)](https://docs.smith.langchain.com/)  
+- [LangFuse (LLM Observability Tool)](https://langfuse.com/docs)            
