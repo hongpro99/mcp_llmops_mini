@@ -9,5 +9,9 @@ python-dotenv
 langchain
 langchain-openai
 langchain-community
+langchain-core
+langsmith
+langgraph 
 faiss-cpu
 mcp[cli]         
+boto3

@@ -1,25 +1,35 @@
-#SQLAlchemy 세션/엔진
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+from backend.settings import settings
 
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
-from .settings import settings
+# PostgreSQL 연결 URL 생성
+DATABASE_URL = (
+    f"postgresql+psycopg2://{settings.DB_USER}:{settings.DB_PASSWORD}"
+    f"@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
+)
 
-print(">>> [db] 모듈 임포트 시작")
+# Engine 생성 (DB 커넥션 풀 관리)
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,       # 연결 유효성 검사 (죽은 커넥션 자동 복구)
+    pool_size=10,             # 연결 풀 크기
+    max_overflow=20           # 초과 연결 허용 개수
+)
 
-engine = create_engine(settings.DATABASE_URL, pool_pre_ping=True, future = True)
-print(">>> [db] create_engine 완료 (아직 DB 연결 아님)")
+# 세션 팩토리
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
 
-SessionLocal = sessionmaker(bind=engine, autocommit = False, autoflush= False)
-print(">>> [db] SessionLocal 생성 완료")
+# Base 클래스 (모든 모델이 여기서 상속)
+Base = declarative_base()
 
+# 의존성 주입용 DB 세션
 def get_db():
-    print(" >>> [db] DB 세션 오픈 시도")
-    db= SessionLocal()
+    db = SessionLocal()
     try:
-        print(">>> [db] DB 세션 획득 완료")
         yield db
     finally:
         db.close()
-        print(">>> [db] DB 세션 닫힘")
-        
-print(">>> [db] 모듈 임포트 완료")

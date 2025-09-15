@@ -6,12 +6,19 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     DATABASE_URL : str
+    DB_USER : str
+    DB_PASSWORD : str
+    DB_HOST : str
+    DB_PORT : str
+    DB_NAME : str
     
     OPENAI_API_KEY : str
     CHAT_MODEL : str
     EMBED_MODEL : str
     LANGSMITH_TRACING : str
     LANGSMITH_API_KEY : str
+    LANGSMITH_PROJECT : str
+    LANGSMITH_ENDPOINT : str
     
     CHUNK_SIZE : int
     CHUNK_OVERLAP : int
